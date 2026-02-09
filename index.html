@@ -1,212 +1,460 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sidang Skripsi - Media Dadu Alfabet</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap");
 
-        body {
-            font-family: "Plus Jakarta Sans", sans-serif;
-            scroll-snap-type: y mandatory;
-            overflow-y: scroll;
-            background: #f1f5f9;
-            color: #000000;
-        }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        background: #f1f5f9;
+        color: #000000;
+      }
 
-        section {
-            height: 100vh;
-            scroll-snap-align: start;
-            display: flex;
-            align-items: center; /* Vertikal Center */
-            justify-content: center; /* Horizontal Center */
-            position: relative;
-            overflow: hidden;
-            padding: 2rem;
-        }
+      section {
+        height: 100vh;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
 
-        /* CONTAINER UTAMA 80% */
-        .slide-container {
-            width: 90%; /* Default mobile */
-            max-width: 1280px; /* Standar layar proyektor/laptop */
-            height: auto;
-            max-height: 90vh;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        border: 2px solid rgba(255, 255, 255, 1);
+        transition: all 0.4s ease;
+      }
 
-        @media (min-width: 1024px) {
-            .slide-container {
-                width: 80%; /* Sesuai permintaan: 80% pada layar besar */
-            }
-        }
+      .glass-card:hover {
+        transform: scale(1.02);
+        border-color: #2563eb;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 255, 255, 1);
-            transition: all 0.4s ease;
-        }
+      .nav-dot:hover .nav-label {
+        opacity: 1;
+        transform: translateX(-10px);
+      }
 
-        .glass-card:hover {
-            transform: scale(1.01);
-            border-color: #2563eb;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
-        }
-
-        .bg-circle {
-            position: absolute;
-            z-index: -1;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-        }
-
-        /* Responsivitas teks agar tidak meluber */
-        h1 { font-size: clamp(2rem, 5vw, 4rem); }
-        h2 { font-size: clamp(1.5rem, 4vw, 3rem); }
+      .bg-circle {
+        position: absolute;
+        z-index: -1;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.3;
+      }
     </style>
-</head>
-<body class="text-black">
-
-    <nav class="fixed right-4 md:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4">
-        <a href="#hero" class="nav-dot group relative flex items-center justify-end">
-            <span class="nav-label opacity-0 absolute right-full mr-4 bg-black text-white text-[10px] py-1 px-2 rounded font-bold">JUDUL</span>
-            <div class="w-3 h-3 rounded-full bg-slate-400 group-hover:bg-blue-600 border-2 border-white"></div>
-        </a>
-        <a href="#latar-belakang" class="nav-dot group relative flex items-center justify-end">
-            <span class="nav-label opacity-0 absolute right-full mr-4 bg-black text-white text-[10px] py-1 px-2 rounded font-bold uppercase">Latar</span>
-            <div class="w-3 h-3 rounded-full bg-slate-400 group-hover:bg-blue-600 border-2 border-white"></div>
-        </a>
-        <a href="#metode" class="nav-dot group relative flex items-center justify-end">
-            <span class="nav-label opacity-0 absolute right-full mr-4 bg-black text-white text-[10px] py-1 px-2 rounded font-bold">METODE</span>
-            <div class="w-3 h-3 rounded-full bg-slate-400 group-hover:bg-blue-600 border-2 border-white"></div>
-        </a>
-        <a href="#hasil" class="nav-dot group relative flex items-center justify-end">
-            <span class="nav-label opacity-0 absolute right-full mr-4 bg-black text-white text-[10px] py-1 px-2 rounded font-bold">HASIL</span>
-            <div class="w-3 h-3 rounded-full bg-slate-400 group-hover:bg-blue-600 border-2 border-white"></div>
-        </a>
+  </head>
+  <body class="text-black">
+    <nav
+      class="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4"
+    >
+      <a
+        href="#hero"
+        class="nav-dot group relative flex items-center justify-end"
+      >
+        <span
+          class="nav-label opacity-0 absolute right-full mr-4 bg-black text-white text-xs py-1 px-3 rounded transition-all font-bold whitespace-nowrap"
+          >JUDUL</span
+        >
+        <div
+          class="w-3 h-3 rounded-full bg-slate-400 group-hover:bg-blue-600 transition-all border-2 border-white shadow-sm"
+        ></div>
+      </a>
+      <a
+        href="#latar-belakang"
+        class="nav-dot group relative flex items-center justify-end"
+      >
+        <span
+          class="nav-label opacity-0 absolute right-full mr-4 bg-black text-white text-xs py-1 px-3 rounded transition-all font-bold whitespace-nowrap"
+          >LATAR BELAKANG</span
+        >
+        <div
+          class="w-3 h-3 rounded-full bg-slate-400 group-hover:bg-blue-600 transition-all border-2 border-white shadow-sm"
+        ></div>
+      </a>
+      <a
+        href="#metode"
+        class="nav-dot group relative flex items-center justify-end"
+      >
+        <span
+          class="nav-label opacity-0 absolute right-full mr-4 bg-black text-white text-xs py-1 px-3 rounded transition-all font-bold whitespace-nowrap"
+          >METODE</span
+        >
+        <div
+          class="w-3 h-3 rounded-full bg-slate-400 group-hover:bg-blue-600 transition-all border-2 border-white shadow-sm"
+        ></div>
+      </a>
+      <a
+        href="#hasil"
+        class="nav-dot group relative flex items-center justify-end"
+      >
+        <span
+          class="nav-label opacity-0 absolute right-full mr-4 bg-black text-white text-xs py-1 px-3 rounded transition-all font-bold whitespace-nowrap"
+          >HASIL</span
+        >
+        <div
+          class="w-3 h-3 rounded-full bg-slate-400 group-hover:bg-blue-600 transition-all border-2 border-white shadow-sm"
+        ></div>
+      </a>
+      <a
+        href="#dokumentasi"
+        class="nav-dot group relative flex items-center justify-end"
+      >
+        <span
+          class="nav-label opacity-0 absolute right-full mr-4 bg-black text-white text-xs py-1 px-3 rounded transition-all font-bold whitespace-nowrap"
+          >DOKUMENTASI</span
+        >
+        <div
+          class="w-3 h-3 rounded-full bg-slate-400 group-hover:bg-blue-600 transition-all border-2 border-white shadow-sm"
+        ></div>
+      </a>
+      <a
+        href="#pustaka"
+        class="nav-dot group relative flex items-center justify-end"
+      >
+        <span
+          class="nav-label opacity-0 absolute right-full mr-4 bg-black text-white text-xs py-1 px-3 rounded transition-all font-bold whitespace-nowrap"
+          >PUSTAKA</span
+        >
+        <div
+          class="w-3 h-3 rounded-full bg-slate-400 group-hover:bg-blue-600 transition-all border-2 border-white shadow-sm"
+        ></div>
+      </a>
     </nav>
 
-    <div class="bg-circle w-64 h-64 md:w-96 md:h-96 bg-blue-400 top-[-5%] left-[-5%] fixed"></div>
-    <div class="bg-circle w-64 h-64 md:w-80 md:h-80 bg-pink-300 bottom-[-5%] right-[-5%] fixed"></div>
+    <div
+      class="bg-circle w-96 h-96 bg-blue-400 top-[-10%] left-[-10%] fixed"
+    ></div>
+    <div
+      class="bg-circle w-80 h-80 bg-pink-300 bottom-[-10%] right-[-10%] fixed"
+    ></div>
 
-    <section id="hero">
-        <div class="slide-container text-center">
-            <div class="space-y-4 md:space-y-6">
-                <span class="inline-block px-4 py-1 bg-black text-white rounded-full text-xs font-bold tracking-widest uppercase">Sidang Skripsi 2026</span>
-                <h1 class="font-extrabold leading-tight text-slate-900 uppercase">
-                    PENGARUH MEDIA <span class="text-blue-600">LEMPAR DADU ALFABET</span> TERHADAP KEMAMPUAN MEMBACA
-                </h1>
-                <p class="text-lg md:text-xl font-bold text-slate-600 uppercase italic">Anak Tunagrahita Sedang Kelas VIII SLB Negeri Badegan</p>
-                
-                <div class="flex flex-col md:flex-row justify-center gap-6 md:gap-12 pt-8">
-                    <div class="text-left border-l-4 border-blue-600 pl-4 md:pl-6">
-                        <p class="text-[10px] font-bold text-slate-500 uppercase">Penyusun</p>
-                        <p class="text-xl md:text-2xl font-black text-black">NAMA ANDA LENGKAP</p>
-                        <p class="text-blue-700 font-bold text-sm">NIM. 123456789</p>
-                    </div>
-                    <div class="text-left border-l-4 border-slate-900 pl-4 md:pl-6">
-                        <p class="text-[10px] font-bold text-slate-500 uppercase">Pembimbing</p>
-                        <p class="text-xl md:text-2xl font-black text-black">Nama Dosen Pembimbing</p>
-                    </div>
-                </div>
-            </div>
+    <section id="hero" class="text-center">
+      <div class="max-w-5xl mx-auto space-y-6">
+        <span
+          class="px-6 py-2 bg-black text-white rounded-full text-sm font-bold tracking-tighter uppercase"
+          >Sidang Skripsi 2026</span
+        >
+        <h1
+          class="text-5xl md:text-6xl font-extrabold leading-tight text-slate-900"
+        >
+          PENGARUH MEDIA
+          <span class="text-blue-600">LEMPAR DADU ALFABET</span> TERHADAP
+          KEMAMPUAN MEMBACA PERMULAAN
+        </h1>
+        <p class="text-xl font-bold text-slate-700 uppercase">
+          Anak Tunagrahita Sedang Kelas VIII SLB Negeri Badegan
+        </p>
+        <div
+          class="flex flex-col md:flex-row justify-center gap-8 md:gap-12 pt-12"
+        >
+          <div class="text-left border-l-4 border-blue-600 pl-6">
+            <p class="text-xs font-bold text-slate-500 uppercase">Penyusun</p>
+            <p class="text-2xl font-black text-black">NAMA ANDA LENGKAP</p>
+            <p class="text-blue-700 font-bold">NIM. 123456789</p>
+          </div>
+          <div class="text-left border-l-4 border-slate-900 pl-6">
+            <p class="text-xs font-bold text-slate-500 uppercase">Pembimbing</p>
+            <p class="text-2xl font-black text-black">Nama Dosen Pembimbing</p>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="latar-belakang">
-        <div class="slide-container">
-            <h2 class="font-black mb-8 border-b-8 border-blue-600 inline-block uppercase w-fit">Latar Belakang</h2>
-            <div class="grid md:grid-cols-2 gap-6 items-stretch">
-                <div class="glass-card p-6 md:p-10 rounded-3xl flex flex-col justify-center">
-                    <h3 class="text-xl font-bold mb-4 text-blue-700 uppercase">Masalah Utama</h3>
-                    <ul class="space-y-3 text-base md:text-lg font-bold leading-tight">
-                        <li class="flex items-start gap-3"><i class="fas fa-exclamation-circle mt-1 text-blue-600"></i> Rendahnya penguasaan simbol huruf.</li>
-                        <li class="flex items-start gap-3"><i class="fas fa-exclamation-circle mt-1 text-blue-600"></i> Media kurang menarik minat siswa.</li>
-                        <li class="flex items-start gap-3"><i class="fas fa-exclamation-circle mt-1 text-blue-600"></i> Perlunya stimulasi visual & kinestetik.</li>
-                    </ul>
-                </div>
-                <div class="bg-blue-600 p-6 md:p-10 rounded-3xl text-white shadow-xl flex items-center border-4 border-blue-700">
-                    <p class="text-xl md:text-2xl italic font-medium leading-relaxed">
-                        "Media <span class="font-black underline text-yellow-300 uppercase">Dadu Alfabet</span> dirancang untuk mempermudah abstraksi simbol melalui aktivitas bermain yang konkret."
-                    </p>
-                </div>
-            </div>
+      <div class="max-w-6xl mx-auto w-full">
+        <h2
+          class="text-4xl font-black mb-12 border-b-8 border-blue-600 inline-block uppercase"
+        >
+          Latar Belakang
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="glass-card p-10 rounded-3xl">
+            <h3 class="text-2xl font-bold mb-4 text-blue-700">Masalah Utama</h3>
+            <ul class="space-y-4 text-lg font-black leading-tight">
+              <li class="flex items-start gap-3">
+                <i class="fas fa-exclamation-circle mt-1 text-blue-600"></i>
+                Rendahnya penguasaan simbol huruf.
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-exclamation-circle mt-1 text-blue-600"></i>
+                Media yang ada kurang menarik minat siswa.
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-exclamation-circle mt-1 text-blue-600"></i>
+                Perlunya stimulasi visual & kinestetik.
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-blue-600 p-10 rounded-3xl text-white shadow-2xl flex items-center border-4 border-blue-700"
+          >
+            <p class="text-2xl italic font-medium leading-relaxed">
+              "Media
+              <span class="font-black underline text-yellow-300 uppercase"
+                >Dadu Alfabet</span
+              >
+              dirancang untuk mempermudah abstraksi simbol melalui aktivitas
+              bermain yang konkret."
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section id="metode" class="bg-slate-100/50">
-        <div class="slide-container">
-            <h2 class="font-black mb-10 text-center uppercase">Metode Penelitian</h2>
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                <a href="HALAMAN2.HTML" class="glass-card p-6 rounded-2xl text-center hover:bg-white hover:border-blue-600 transition-all border-2 border-slate-200">
-                    <i class="fas fa-microscope text-2xl mb-3 text-blue-600"></i>
-                    <p class="text-[10px] font-black text-slate-500 uppercase">Jenis</p>
-                    <p class="font-black text-blue-700 leading-tight">Kuantitatif Pre-Exp</p>
-                    <span class="text-[10px] font-bold text-slate-400 mt-2 block tracking-widest uppercase">Lihat Analisis</span>
-                </a>
-                <div class="glass-card p-6 rounded-2xl text-center border-2 border-slate-200 shadow-sm">
-                    <i class="fas fa-project-diagram text-2xl mb-3 text-blue-600"></i>
-                    <p class="text-[10px] font-black text-slate-500 uppercase">Desain</p>
-                    <p class="font-black">One Group Pre-Post</p>
-                </div>
-                <div class="glass-card p-6 rounded-2xl text-center border-2 border-slate-200 shadow-sm">
-                    <i class="fas fa-users text-2xl mb-3 text-blue-600"></i>
-                    <p class="text-[10px] font-black text-slate-500 uppercase">Subjek</p>
-                    <p class="font-black">Anak Tunagrahita</p>
-                </div>
-                <div class="glass-card p-6 rounded-2xl text-center border-2 border-slate-200 shadow-sm">
-                    <i class="fas fa-calculator text-2xl mb-3 text-blue-600"></i>
-                    <p class="text-[10px] font-black text-slate-500 uppercase">Analisis</p>
-                    <p class="font-black">Uji Wilcoxon</p>
-                </div>
-            </div>
+    <section id="metode" class="bg-slate-100">
+      <div class="max-w-6xl mx-auto w-full">
+        <h2 class="text-4xl font-black mb-12 text-center uppercase">
+          Metode Penelitian
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <a
+            href="halaman2.html"
+            class="glass-card p-8 rounded-2xl text-center hover:bg-white hover:border-blue-600 transition-all border-2 border-slate-200 shadow-md"
+          >
+            <i class="fas fa-microscope text-3xl mb-4 text-blue-600"></i>
+            <p class="text-xs font-black text-slate-500 uppercase mb-1">
+              Jenis
+            </p>
+            <p class="font-black text-lg text-blue-700 leading-tight">
+              Kuantitatif Pre-Exp
+            </p>
+            <span
+              class="text-[10px] font-bold text-slate-400 mt-2 block tracking-widest"
+              ><i class="fas fa-external-link-alt"></i> ANALISIS</span
+            >
+          </a>
+          <div
+            class="glass-card p-8 rounded-2xl text-center border-2 border-slate-200"
+          >
+            <i class="fas fa-project-diagram text-3xl mb-4 text-blue-600"></i>
+            <p class="text-xs font-black text-slate-500 uppercase mb-1">
+              Desain
+            </p>
+            <p class="font-black text-xl">One Group Pre-Post</p>
+          </div>
+          <div
+            class="glass-card p-8 rounded-2xl text-center border-2 border-slate-200"
+          >
+            <i class="fas fa-users text-3xl mb-4 text-blue-600"></i>
+            <p class="text-xs font-black text-slate-500 uppercase mb-1">
+              Subjek
+            </p>
+            <p class="font-black text-xl">Anak Tunagrahita</p>
+          </div>
+          <div
+            class="glass-card p-8 rounded-2xl text-center border-2 border-slate-200"
+          >
+            <i class="fas fa-calculator text-3xl mb-4 text-blue-600"></i>
+            <p class="text-xs font-black text-slate-500 uppercase mb-1">
+              Analisis
+            </p>
+            <p class="font-black text-xl">Uji Wilcoxon</p>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="hasil">
-        <div class="slide-container">
-            <h2 class="font-black mb-8 uppercase border-b-8 border-blue-600 inline-block w-fit">Hasil Penelitian</h2>
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="space-y-6">
-                    <div class="glass-card p-5 rounded-2xl border-l-8 border-slate-400">
-                        <div class="flex justify-between font-black text-lg mb-2 text-slate-600"><span>PRE-TEST</span><span>42.50</span></div>
-                        <div class="w-full bg-slate-200 h-6 rounded-full overflow-hidden border">
-                            <div class="bg-slate-500 h-full w-[42.5%]"></div>
-                        </div>
-                    </div>
-                    <div class="glass-card p-5 rounded-2xl border-l-8 border-blue-600 shadow-lg">
-                        <div class="flex justify-between font-black text-lg mb-2 text-blue-600"><span>POST-TEST</span><span>81.20</span></div>
-                        <div class="w-full bg-slate-200 h-6 rounded-full overflow-hidden border">
-                            <div class="bg-blue-600 h-full w-[81.2%]"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border-4 border-blue-600 text-center">
-                    <p class="font-black text-slate-400 uppercase text-[10px] mb-1">Uji Hipotesis Wilcoxon</p>
-                    <p class="text-sm font-bold text-slate-600">Asymp. Sig. (2-tailed)</p>
-                    <p class="text-6xl font-black text-blue-700 my-2">0.024</p>
-                    <div class="bg-green-100 text-green-800 text-xl font-black py-2 rounded-xl mb-2 border border-green-200">Ha DITERIMA</div>
-                    <p class="text-[10px] font-bold italic text-slate-500">Signifikan (p < 0.05)</p>
-                </div>
+      <div class="max-w-6xl mx-auto w-full">
+        <h2
+          class="text-4xl font-black mb-12 uppercase border-b-8 border-blue-600 inline-block"
+        >
+          Hasil Penelitian
+        </h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="space-y-8">
+            <div class="glass-card p-6 rounded-2xl border-l-8 border-slate-400">
+              <div class="flex justify-between font-black text-xl mb-2">
+                <span>PRE-TEST</span><span>42.50</span>
+              </div>
+              <div
+                class="w-full bg-slate-200 h-8 rounded-full overflow-hidden border-2 border-slate-300"
+              >
+                <div class="bg-slate-500 h-full w-[42.5%]"></div>
+              </div>
             </div>
+            <div
+              class="glass-card p-6 rounded-2xl border-l-8 border-blue-600 shadow-xl"
+            >
+              <div
+                class="flex justify-between font-black text-xl mb-2 text-blue-600 uppercase"
+              >
+                <span>POST-TEST</span><span>81.20</span>
+              </div>
+              <div
+                class="w-full bg-slate-200 h-8 rounded-full overflow-hidden border-2 border-blue-200"
+              >
+                <div
+                  class="bg-blue-600 h-full w-[81.2%] shadow-[0_0_20px_rgba(37,99,235,0.4)]"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-white p-10 rounded-[3rem] shadow-2xl border-4 border-blue-600"
+          >
+            <p
+              class="text-center font-black text-slate-400 uppercase text-xs mb-2"
+            >
+              Uji Hipotesis Wilcoxon
+            </p>
+            <div class="text-center">
+              <p class="text-sm font-bold text-slate-600">
+                Asymp. Sig. (2-tailed)
+              </p>
+              <p class="text-7xl font-black text-blue-700 my-2">0.024</p>
+              <div
+                class="bg-green-100 text-green-800 text-2xl font-black py-3 rounded-2xl mb-4 border-2 border-green-200 uppercase"
+              >
+                Ha DITERIMA
+              </div>
+              <p class="text-xs font-bold italic text-slate-500">
+                Nilai < 0.05 menunjukkan pengaruh signifikan
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section class="bg-slate-950 text-white">
-        <div class="slide-container text-center space-y-8">
-            <h2 class="text-5xl md:text-7xl font-black tracking-tighter uppercase">Terima Kasih</h2>
-            <div class="h-2 w-24 bg-blue-600 mx-auto rounded-full"></div>
-            <p class="text-xl md:text-2xl font-light text-slate-400 italic">Mohon arahan dan saran dari Bapak/Ibu Dewan Penguji</p>
-            <button onclick="window.scrollTo(0,0)" class="px-10 py-4 border-2 border-white rounded-full font-black hover:bg-white hover:text-black transition-all text-xs tracking-widest">REPLAY PRESENTASI</button>
+    <section id="dokumentasi">
+      <div class="max-w-6xl mx-auto w-full">
+        <h2
+          class="text-4xl font-black mb-12 border-b-8 border-blue-600 inline-block uppercase"
+        >
+          Dokumentasi
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="group relative aspect-square glass-card rounded-3xl overflow-hidden flex flex-col items-center justify-center p-4"
+          >
+            <div
+              class="w-full h-full bg-slate-200 rounded-2xl flex items-center justify-center relative"
+            >
+              <i
+                class="fas fa-camera text-4xl text-slate-400 group-hover:hidden"
+              ></i>
+              <img
+                src="foto1.jpg"
+                class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-500"
+                alt="Pre-Test"
+              />
+            </div>
+            <p class="mt-4 font-black uppercase text-sm tracking-widest">
+              Pre-Test
+            </p>
+          </div>
+          <div
+            class="group relative aspect-square glass-card rounded-3xl overflow-hidden flex flex-col items-center justify-center p-4 border-2 border-blue-500"
+          >
+            <div
+              class="w-full h-full bg-slate-200 rounded-2xl flex items-center justify-center relative"
+            >
+              <i
+                class="fas fa-dice text-4xl text-blue-500 group-hover:hidden"
+              ></i>
+              <img
+                src="foto2.jpg"
+                class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-500"
+                alt="Treatment"
+              />
+            </div>
+            <p
+              class="mt-4 font-black text-blue-600 uppercase text-sm tracking-widest"
+            >
+              Treatment
+            </p>
+          </div>
+          <div
+            class="group relative aspect-square glass-card rounded-3xl overflow-hidden flex flex-col items-center justify-center p-4"
+          >
+            <div
+              class="w-full h-full bg-slate-200 rounded-2xl flex items-center justify-center relative"
+            >
+              <i
+                class="fas fa-graduation-cap text-4xl text-slate-400 group-hover:hidden"
+              ></i>
+              <img
+                src="foto3.jpg"
+                class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-500"
+                alt="Post-Test"
+              />
+            </div>
+            <p class="mt-4 font-black uppercase text-sm tracking-widest">
+              Post-Test
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
-</body>
+    <section id="pustaka">
+      <div class="max-w-4xl mx-auto w-full">
+        <h2
+          class="text-4xl font-black mb-12 border-b-8 border-slate-900 inline-block uppercase"
+        >
+          Daftar Pustaka
+        </h2>
+        <div
+          class="glass-card p-10 rounded-3xl space-y-6 text-xl font-medium leading-relaxed italic border-2 border-slate-200"
+        >
+          <p>
+            Abdurrahman, M. (2012).
+            <span class="font-black"
+              >Pendidikan Bagi Anak Berkesulitan Belajar</span
+            >. Jakarta: Rineka Cipta.
+          </p>
+          <p>
+            Arsyad, A. (2014).
+            <span class="font-black text-blue-700">Media Pembelajaran</span>.
+            Jakarta: Raja Grafindo Persada.
+          </p>
+          <p>
+            Somantri, T. (2012).
+            <span class="font-black">Psikologi Anak Luar Biasa</span>. Bandung:
+            Refika Aditama.
+          </p>
+          <p>
+            Sugiyono. (2017).
+            <span class="font-black text-blue-700"
+              >Metode Penelitian Kuantitatif, Kualitatif, dan R&D</span
+            >. Bandung: Alfabeta.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-950 text-white text-center">
+      <div class="space-y-8">
+        <h2 class="text-7xl font-black tracking-tighter uppercase mb-4">
+          Terima Kasih
+        </h2>
+        <div class="h-2 w-32 bg-blue-600 mx-auto rounded-full"></div>
+        <p class="text-2xl font-light text-slate-400 italic">
+          Mohon arahan dan saran dari Bapak/Ibu Dewan Penguji
+        </p>
+        <button
+          onclick="window.scrollTo(0,0)"
+          class="mt-12 px-12 py-5 border-2 border-white rounded-full font-black hover:bg-white hover:text-black transition-all uppercase tracking-[0.2em] text-xs"
+        >
+          REPLAY PRESENTASI
+        </button>
+      </div>
+    </section>
+  </body>
 </html>
