@@ -14,20 +14,33 @@
 
       body {
         font-family: "Plus Jakarta Sans", sans-serif;
-        scroll-snap-type: y mandatory;
-        overflow-y: scroll;
         background: #f1f5f9;
+        color: #000000;
+        margin: 0;
       }
 
       section {
-        height: 100vh;
-        scroll-snap-align: start;
+        min-height: 100vh;
         display: flex;
-        flex-direction: column;
+        align-items: center;
         justify-content: center;
         padding: 2rem;
         position: relative;
         overflow: hidden;
+      }
+
+      /* CONTAINER 80% KONSISTEN */
+      .slide-container {
+        width: 90%; /* Mobile */
+        max-width: 1280px;
+        margin: auto;
+        z-index: 10;
+      }
+
+      @media (min-width: 1024px) {
+        .slide-container {
+          width: 80%; /* Desktop pas 80% */
+        }
       }
 
       .glass-card {
@@ -35,189 +48,143 @@
         backdrop-filter: blur(12px);
         border: 2px solid rgba(255, 255, 255, 1);
         transition: all 0.4s ease;
-        color: #000000;
       }
 
       .glass-card:hover {
-        transform: scale(1.02);
+        transform: translateY(-5px);
         border-color: #2563eb;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
       }
 
-      /* Tombol Kembali Custom */
       .btn-back {
         position: fixed;
-        top: 2rem;
-        left: 2rem;
-        z-index: 50;
+        top: 1.5rem;
+        left: 1.5rem;
+        z-index: 100;
         display: flex;
-        items-center: center;
+        align-items: center;
         gap: 0.5rem;
-        background: rgba(15, 23, 42, 0.9);
+        background: #0f172a;
         color: white;
-        padding: 0.75rem 1.5rem;
+        padding: 0.6rem 1.2rem;
         border-radius: 9999px;
         font-weight: 800;
-        font-size: 0.875rem;
+        font-size: 0.75rem;
         transition: all 0.3s ease;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
       }
 
       .btn-back:hover {
         background: #2563eb;
-        transform: translateX(-5px);
-        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+        transform: translateX(5px);
       }
+
+      /* Tipografi Adaptif */
+      h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+      .text-variable { font-size: clamp(1.2rem, 3vw, 1.8rem); }
     </style>
   </head>
-  <body class="text-black">
-    <a href="index.html" class="btn-back">
+  <body>
+    <a href="index.html#metode" class="btn-back">
       <i class="fas fa-arrow-left"></i>
-      Kembali ke Slide
+      Kembali
     </a>
 
     <section id="korelasi-metode" class="bg-white">
-      <div class="max-w-6xl mx-auto w-full">
-        <h2
-          class="text-4xl font-black mb-4 border-b-8 border-blue-600 inline-block uppercase"
-        >
-          Korelasi Judul & Metode
-        </h2>
-        <p class="text-xl text-slate-600 mb-10 font-medium">
-          Analisis Keterkaitan Variabel dengan Model Kuantitatif
-          Pre-Experimental
-        </p>
+      <div class="absolute top-[-10%] right-[-5%] w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-50 -z-0"></div>
+      
+      <div class="slide-container">
+        <div class="mb-10">
+          <h2 class="font-black mb-2 border-b-8 border-blue-600 inline-block uppercase">
+            Korelasi Judul & Metode
+          </h2>
+          <p class="text-lg md:text-xl text-slate-500 font-medium">
+            Analisis Keterkaitan Variabel & Model Penelitian
+          </p>
+        </div>
 
-        <div class="grid md:grid-cols-2 gap-10">
+        <div class="grid lg:grid-cols-2 gap-8 md:gap-12">
           <div class="space-y-6">
-            <div
-              class="glass-card p-6 rounded-2xl border-l-8 border-indigo-600"
-            >
-              <h3
-                class="text-lg font-bold text-indigo-600 uppercase tracking-wider mb-2"
-              >
+            <div class="glass-card p-6 rounded-2xl border-l-8 border-indigo-600">
+              <h3 class="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-1">
                 Variabel Independen (X)
               </h3>
-              <p class="text-2xl font-black text-black">
+              <p class="text-variable font-black text-black leading-tight">
                 Media Lempar Dadu Alfabet
               </p>
-              <p class="text-sm text-slate-500 mt-2 italic">
-                Sebagai "Treatment" atau perlakuan yang diberikan kepada subjek
-                penelitian.
+              <p class="text-sm text-slate-500 mt-3 italic leading-relaxed">
+                Berperan sebagai <span class="text-indigo-600 font-bold">Treatment</span> atau perlakuan mandiri yang diberikan untuk memicu respon subjek.
               </p>
             </div>
 
             <div class="glass-card p-6 rounded-2xl border-l-8 border-pink-600">
-              <h3
-                class="text-lg font-bold text-pink-600 uppercase tracking-wider mb-2"
-              >
+              <h3 class="text-xs font-bold text-pink-600 uppercase tracking-widest mb-1">
                 Variabel Dependen (Y)
               </h3>
-              <p class="text-2xl font-black text-black">
+              <p class="text-variable font-black text-black leading-tight">
                 Kemampuan Membaca Permulaan
               </p>
-              <p class="text-sm text-slate-500 mt-2 italic">
-                Sebagai hasil yang diukur untuk melihat sejauh mana pengaruh
-                dari Variabel X.
+              <p class="text-sm text-slate-500 mt-3 italic leading-relaxed">
+                Hasil yang diukur (<span class="text-pink-600 font-bold">Outcome</span>) untuk membuktikan efektivitas dari intervensi variabel X.
               </p>
             </div>
           </div>
 
-          <div
-            class="glass-card p-8 rounded-3xl bg-slate-50 border-2 border-dashed border-slate-300"
-          >
-            <h3
-              class="text-2xl font-black mb-6 flex items-center gap-3 text-black"
-            >
-              <i class="fas fa-project-diagram text-blue-600"></i> Mengapa
-              Pre-Experimental?
+          <div class="glass-card p-8 rounded-3xl bg-slate-50/50 border-2 border-dashed border-slate-200">
+            <h3 class="text-xl font-black mb-6 flex items-center gap-3 text-black">
+              <i class="fas fa-question-circle text-blue-600"></i> Mengapa Pre-Experimental?
             </h3>
 
-            <div class="space-y-6">
+            <div class="space-y-5">
               <div class="flex gap-4">
-                <div
-                  class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-lg"
-                >
-                  1
-                </div>
+                <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-md">1</div>
                 <div>
-                  <h4 class="font-bold text-lg text-black">
-                    Keterbatasan Subjek (Niche)
-                  </h4>
-                  <p class="text-slate-600 text-sm">
-                    Siswa Tunagrahita Sedang di SLBN Badegan memiliki jumlah
-                    terbatas, sehingga tidak memungkinkan adanya kelompok
-                    kontrol (Control Group) yang setara.
-                  </p>
+                  <h4 class="font-bold text-black">Keterbatasan Subjek</h4>
+                  <p class="text-slate-500 text-xs md:text-sm leading-relaxed">Populasi siswa Tunagrahita Sedang yang terbatas di SLBN Badegan tidak memungkinkan pembentukan kelompok kontrol yang homogen.</p>
                 </div>
               </div>
 
               <div class="flex gap-4">
-                <div
-                  class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-lg"
-                >
-                  2
-                </div>
+                <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-md">2</div>
                 <div>
-                  <h4 class="font-bold text-lg text-black">
-                    One Group Pre-Posttest
-                  </h4>
-                  <p class="text-slate-600 text-sm">
-                    Membandingkan kondisi <strong>sebelum</strong> (Pre-test)
-                    dan <strong>sesudah</strong> (Post-test) pada kelompok yang
-                    sama untuk melihat efektivitas media Dadu Alfabet.
-                  </p>
+                  <h4 class="font-bold text-black">One Group Pre-Posttest</h4>
+                  <p class="text-slate-500 text-xs md:text-sm leading-relaxed">Metode paling efektif untuk mengukur gain score (peningkatan) pada subjek tunggal/kecil sebelum dan sesudah intervensi.</p>
                 </div>
               </div>
 
               <div class="flex gap-4">
-                <div
-                  class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-lg"
-                >
-                  3
-                </div>
+                <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-md">3</div>
                 <div>
-                  <h4 class="font-bold text-lg text-black">Uji Kausalitas</h4>
-                  <p class="text-slate-600 text-sm">
-                    Sesuai dengan kata <strong>"PENGARUH"</strong> pada judul,
-                    metode kuantitatif ini digunakan untuk menguji hubungan
-                    sebab-akibat secara statistik.
-                  </p>
+                  <h4 class="font-bold text-black">Uji Kausalitas</h4>
+                  <p class="text-slate-500 text-xs md:text-sm leading-relaxed">Membuktikan klaim kata "PENGARUH" dalam judul melalui data statistik yang valid secara kuantitatif.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div
-          class="mt-12 p-6 bg-blue-50 rounded-2xl border border-blue-100 shadow-inner"
-        >
-          <div
-            class="flex flex-col md:flex-row items-center justify-around gap-4 text-center"
-          >
-            <div
-              class="font-black p-4 bg-white rounded-xl shadow-sm w-full md:w-1/4 text-black border-2 border-slate-100"
-            >
-              PRE-TEST (O1)
+        <div class="mt-10 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-100 shadow-sm">
+          <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-center">
+            <div class="flex-1 bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+              <span class="block text-[10px] text-slate-400 font-bold uppercase mb-1">Kondisi Awal</span>
+              <p class="font-black text-sm">PRE-TEST (O1)</p>
             </div>
-            <i
-              class="fas fa-arrow-right text-blue-600 hidden md:block animate-pulse"
-            ></i>
-            <div
-              class="font-black p-4 bg-blue-600 text-white rounded-xl shadow-md w-full md:w-1/4 uppercase tracking-widest"
-            >
-              Treatment (X) <br /><span class="text-[10px] font-normal"
-                >Media Dadu Alfabet</span
-              >
+            
+            <i class="fas fa-chevron-right text-blue-400 hidden md:block animate-pulse"></i>
+            <i class="fas fa-chevron-down text-blue-400 md:hidden"></i>
+
+            <div class="flex-1 bg-blue-600 p-4 rounded-xl shadow-lg text-white">
+              <span class="block text-[10px] text-blue-200 font-bold uppercase mb-1">Intervensi</span>
+              <p class="font-black text-sm uppercase">Treatment (X)</p>
             </div>
-            <i
-              class="fas fa-arrow-right text-blue-600 hidden md:block animate-pulse"
-            ></i>
-            <div
-              class="font-black p-4 bg-white rounded-xl shadow-sm w-full md:w-1/4 text-black border-2 border-slate-100"
-            >
-              POST-TEST (O2)
+
+            <i class="fas fa-chevron-right text-blue-400 hidden md:block animate-pulse"></i>
+            <i class="fas fa-chevron-down text-blue-400 md:hidden"></i>
+
+            <div class="flex-1 bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+              <span class="block text-[10px] text-slate-400 font-bold uppercase mb-1">Kondisi Akhir</span>
+              <p class="font-black text-sm">POST-TEST (O2)</p>
             </div>
           </div>
         </div>
