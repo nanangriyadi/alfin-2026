@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Korelasi Judul & Metode - Detail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap");
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        background: #f1f5f9;
+      }
+
+      section {
+        height: 100vh;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        border: 2px solid rgba(255, 255, 255, 1);
+        transition: all 0.4s ease;
+        color: #000000;
+      }
+
+      .glass-card:hover {
+        transform: scale(1.02);
+        border-color: #2563eb;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Tombol Kembali Custom */
+      .btn-back {
+        position: fixed;
+        top: 2rem;
+        left: 2rem;
+        z-index: 50;
+        display: flex;
+        items-center: center;
+        gap: 0.5rem;
+        background: rgba(15, 23, 42, 0.9);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 9999px;
+        font-weight: 800;
+        font-size: 0.875rem;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .btn-back:hover {
+        background: #2563eb;
+        transform: translateX(-5px);
+        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+      }
+    </style>
+  </head>
+  <body class="text-black">
+    <a href="./PRESENTASI SKRIPSI.HTML" class="btn-back">
+      <i class="fas fa-arrow-left"></i>
+      Kembali ke Slide
+    </a>
+
+    <section id="korelasi-metode" class="bg-white">
+      <div class="max-w-6xl mx-auto w-full">
+        <h2
+          class="text-4xl font-black mb-4 border-b-8 border-blue-600 inline-block uppercase"
+        >
+          Korelasi Judul & Metode
+        </h2>
+        <p class="text-xl text-slate-600 mb-10 font-medium">
+          Analisis Keterkaitan Variabel dengan Model Kuantitatif
+          Pre-Experimental
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-10">
+          <div class="space-y-6">
+            <div
+              class="glass-card p-6 rounded-2xl border-l-8 border-indigo-600"
+            >
+              <h3
+                class="text-lg font-bold text-indigo-600 uppercase tracking-wider mb-2"
+              >
+                Variabel Independen (X)
+              </h3>
+              <p class="text-2xl font-black text-black">
+                Media Lempar Dadu Alfabet
+              </p>
+              <p class="text-sm text-slate-500 mt-2 italic">
+                Sebagai "Treatment" atau perlakuan yang diberikan kepada subjek
+                penelitian.
+              </p>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl border-l-8 border-pink-600">
+              <h3
+                class="text-lg font-bold text-pink-600 uppercase tracking-wider mb-2"
+              >
+                Variabel Dependen (Y)
+              </h3>
+              <p class="text-2xl font-black text-black">
+                Kemampuan Membaca Permulaan
+              </p>
+              <p class="text-sm text-slate-500 mt-2 italic">
+                Sebagai hasil yang diukur untuk melihat sejauh mana pengaruh
+                dari Variabel X.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="glass-card p-8 rounded-3xl bg-slate-50 border-2 border-dashed border-slate-300"
+          >
+            <h3
+              class="text-2xl font-black mb-6 flex items-center gap-3 text-black"
+            >
+              <i class="fas fa-project-diagram text-blue-600"></i> Mengapa
+              Pre-Experimental?
+            </h3>
+
+            <div class="space-y-6">
+              <div class="flex gap-4">
+                <div
+                  class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-lg"
+                >
+                  1
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg text-black">
+                    Keterbatasan Subjek (Niche)
+                  </h4>
+                  <p class="text-slate-600 text-sm">
+                    Siswa Tunagrahita Sedang di SLBN Badegan memiliki jumlah
+                    terbatas, sehingga tidak memungkinkan adanya kelompok
+                    kontrol (Control Group) yang setara.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div
+                  class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-lg"
+                >
+                  2
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg text-black">
+                    One Group Pre-Posttest
+                  </h4>
+                  <p class="text-slate-600 text-sm">
+                    Membandingkan kondisi <strong>sebelum</strong> (Pre-test)
+                    dan <strong>sesudah</strong> (Post-test) pada kelompok yang
+                    sama untuk melihat efektivitas media Dadu Alfabet.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div
+                  class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-lg"
+                >
+                  3
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg text-black">Uji Kausalitas</h4>
+                  <p class="text-slate-600 text-sm">
+                    Sesuai dengan kata <strong>"PENGARUH"</strong> pada judul,
+                    metode kuantitatif ini digunakan untuk menguji hubungan
+                    sebab-akibat secara statistik.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-12 p-6 bg-blue-50 rounded-2xl border border-blue-100 shadow-inner"
+        >
+          <div
+            class="flex flex-col md:flex-row items-center justify-around gap-4 text-center"
+          >
+            <div
+              class="font-black p-4 bg-white rounded-xl shadow-sm w-full md:w-1/4 text-black border-2 border-slate-100"
+            >
+              PRE-TEST (O1)
+            </div>
+            <i
+              class="fas fa-arrow-right text-blue-600 hidden md:block animate-pulse"
+            ></i>
+            <div
+              class="font-black p-4 bg-blue-600 text-white rounded-xl shadow-md w-full md:w-1/4 uppercase tracking-widest"
+            >
+              Treatment (X) <br /><span class="text-[10px] font-normal"
+                >Media Dadu Alfabet</span
+              >
+            </div>
+            <i
+              class="fas fa-arrow-right text-blue-600 hidden md:block animate-pulse"
+            ></i>
+            <div
+              class="font-black p-4 bg-white rounded-xl shadow-sm w-full md:w-1/4 text-black border-2 border-slate-100"
+            >
+              POST-TEST (O2)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
